@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:interval_pal/screens/dashboard_screen.dart';
+import 'package:interval_pal/screens/workout_screen.dart';
+import 'package:interval_pal/screens/template_screen.dart';
+import 'package:interval_pal/screens/profile_screen.dart';
+import 'package:interval_pal/screens/workout_screen.dart';
+import 'package:interval_pal/screens/history_screen.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -14,19 +20,12 @@ class _HomePageState extends State<HomePage> {
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _pages = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+  List<StatefulWidget> _pages = <StatefulWidget>[
+    Dashboard(),
+    Template(),
+    Workout(),
+    History(),
+    Profile()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -39,18 +38,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.dashboard_rounded),
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.paste_rounded),
+            label: 'Templates',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.add_circle),
+            label: 'Workout',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'History',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
